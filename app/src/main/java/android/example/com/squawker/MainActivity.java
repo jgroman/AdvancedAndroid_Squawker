@@ -38,7 +38,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
-    private static String LOG_TAG = MainActivity.class.getSimpleName();
+    private static String TAG = MainActivity.class.getSimpleName();
     private static final int LOADER_ID_MESSAGES = 0;
 
     RecyclerView mRecyclerView;
@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity implements
         // TODO (1) Get the test data here from the extras bundle that came with this intent.
         // To confirm that the data was passed in, make sure to show the data in a log statement.
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null && extras.containsKey("test")) {
+            Log.d(TAG, "onCreate: Extras Contains: " + extras.get("test"));
+        }
+
     }
 
     @Override
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements
         // This method generates a selection off of only the current followers
         String selection = SquawkContract.createSelectionForCurrentFollowers(
                 PreferenceManager.getDefaultSharedPreferences(this));
-        Log.d(LOG_TAG, "Selection is " + selection);
+        Log.d(TAG, "Selection is " + selection);
         return new CursorLoader(this, SquawkProvider.SquawkMessages.CONTENT_URI,
                 MESSAGES_PROJECTION, selection, null, SquawkContract.COLUMN_DATE + " DESC");
     }
