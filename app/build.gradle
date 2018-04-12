@@ -38,6 +38,9 @@ dependencies {
 
     // Firebase dependency
     implementation 'com.google.firebase:firebase-messaging:12.0.1'
+
+    // Notifications
+    implementation "com.android.support:support-compat:27.1.1"
 }
 // Apply the Google Services plugin. Make sure to add the google-services.json file in the app
 // folder. You download it from the Firebase console
